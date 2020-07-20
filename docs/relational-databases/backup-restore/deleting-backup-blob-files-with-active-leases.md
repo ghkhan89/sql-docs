@@ -69,12 +69,13 @@ The follow steps describe how to clean up after failed backup or restore activit
 $storageAccount = "<myStorageAccount>"
 $storageKey = "<myStorageKey>"
 $blobContainer = "<myBlobContainer>"
-$storageAssemblyPathName = "<myStorageAssemblyPathName>"
-  
+
 # well known Restore Lease ID  
-$restoreLeaseId = "BAC2BAC2BAC2BAC2BAC2BAC2BAC2BAC2"  
-  
+$restoreLeaseId = "BAC2BAC2BAC2BAC2BAC2BAC2BAC2BAC2" 
+
 # load the storage assembly without locking the file for the duration of the PowerShell session  
+$storageAssemblyPath = Get-Item -Path "C:\Program Files\Microsoft SQL Server\MSSQL*.*\MSSQL\Binn\Microsoft.WindowsAzure.Storage.dll"
+$storageAssemblyPath = $storageAssemblyPath.FullName 
 $bytes = [System.IO.File]::ReadAllBytes($storageAssemblyPath)  
 [System.Reflection.Assembly]::Load($bytes)  
   
